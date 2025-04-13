@@ -2,19 +2,22 @@ from flask import Flask, request
 import requests
 import os
 from dotenv import load_dotenv
-# from claves import (TOKEN, CHAT_ID) 
+
 
 load_dotenv()
 
-
-
 app = Flask(__name__)
 
-# Tu TOKEN y tu chat_id (Telegram user ID)
+
 TOKEN = os.getenv("TOKEN")
-CHAT_ID = os.getenv("CHAT_ID")
+CHAT_ID = os.getenv("RECEIVERS")
 
 @app.route('/', methods=['GET', 'POST'])
+
+def notify_all(text):
+    for chat_id in CHAT_ID:
+        send_msg(chat_id, text)
+
 def webhook():
     if request.method == 'GET':
         return "Bot funcionando", 200
@@ -33,7 +36,7 @@ def webhook():
             send_button(chat_id)
 
         elif text == "🚪 Tocar timbre":
-            send_msg(CHAT_ID, "🚨 Tocaron el timbre abajo.")
+            notify_all(CHAT_ID, "🚨 Tocaron el timbre abajo.")
 
     return "ok", 200
 
