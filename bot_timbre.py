@@ -1,11 +1,16 @@
 from flask import Flask, request
 import requests
+import os
+from dotenv import load_dotenv
+# from claves import (TOKEN, CHAT_ID) 
+
+load_dotenv()
 
 app = Flask(__name__)
 
 # Tu TOKEN y tu chat_id (Telegram user ID)
-TOKEN = '7695311258:AAGUf6wVkPQZeix9nB09-0VdG-LmPW6jCdg'
-CHAT_ID = '@TimbreSil_bot'
+TOKEN = os.getenv("TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 @app.route('/', methods=['POST'])
 def webhook():
