@@ -36,7 +36,7 @@ def webhook():
             send_button(chat_id)
 
         elif text == "🚪 Tocar timbre":
-            notify_all(RECEIVERS, "🚨 Tocaron el timbre abajo.")
+            notify_all("🚨 Tocaron el timbre abajo.")
 
     return "ok", 200
 
