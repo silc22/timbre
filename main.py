@@ -18,8 +18,9 @@ CHAT_ID = os.getenv("CHAT_ID")
 def webhook():
     if request.method == 'GET':
         return "🚀 Bot funcionando", 200
-
+    
     data = request.get_json()
+    print("📩 Datos recibidos de Telegram:", data)
 
     if "message" in data:
         chat_id = data["message"]["chat"]["id"]
