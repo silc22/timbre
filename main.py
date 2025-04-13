@@ -12,7 +12,9 @@ TOKEN = os.getenv("TOKEN")
 URL = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
 
 # 👥 Lista de destinatarios (chat_ids)
-RECEIVERS = os.getenv("RECEIVERS")  # ← poné acá los tuyos reales
+RECEIVERS = os.getenv("RECEIVERS", "")
+RECEIVERS = [chat_id.strip() for chat_id in RECEIVERS.split(",") if chat_id.strip()]
+
 
 # 📤 Función para enviar mensajes
 def send_msg(chat_id, text):
@@ -46,6 +48,7 @@ def webhook():
 
         elif text == "🚪 Tocar timbre":
             notify_all("🚨 Tocaron el timbre.")
+
 
     return "ok", 200
 
