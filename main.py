@@ -45,8 +45,7 @@ def webhook():
             send_button(chat_id)
 
         elif text == "🚪 Tocar timbre":
-            hora = datetime.now().strftime("%H:%M")
-            notify_all(f"🚨 Tocaron el timbre a las {hora}.")
+            notify_all("🚨 Tocaron el timbre.")
 
     return "ok", 200
 
