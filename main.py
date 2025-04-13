@@ -14,8 +14,11 @@ app = Flask(__name__)
 TOKEN = os.getenv("TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def webhook():
+    if request.method == 'GET':
+        return "🚀 Bot funcionando", 200
+
     data = request.get_json()
 
     if "message" in data:
