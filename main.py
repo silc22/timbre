@@ -10,12 +10,12 @@ app = Flask(__name__)
 
 
 TOKEN = os.getenv("TOKEN")
-CHAT_ID = os.getenv("RECEIVERS")
+RECEIVERS = os.getenv("RECEIVERS")
 
 @app.route('/', methods=['GET', 'POST'])
 
 def notify_all(text):
-    for chat_id in CHAT_ID:
+    for chat_id in RECEIVERS:
         send_msg(chat_id, text)
 
 def webhook():
@@ -36,7 +36,7 @@ def webhook():
             send_button(chat_id)
 
         elif text == "🚪 Tocar timbre":
-            notify_all(CHAT_ID, "🚨 Tocaron el timbre abajo.")
+            notify_all(RECEIVERS, "🚨 Tocaron el timbre abajo.")
 
     return "ok", 200
 
